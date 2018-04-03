@@ -58,4 +58,9 @@ class students extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Group::className(), ['id' => 'group_id']);
     }
+
+    public function getFio()
+    {
+        return $this->sur_name.' '.$this->name;
+    }
 }

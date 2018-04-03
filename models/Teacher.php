@@ -47,4 +47,13 @@ class Teacher extends \yii\db\ActiveRecord
             'teacher_phone_number' => 'Teacher Phone Number',
         ];
     }
+
+    public function getFio()
+    {
+        $name = $this->teacher_name;
+        $patronymic_name = $this->teacher_patronymic_name;
+        $teacher_name =  substr($name,0,1).'.';
+        $teacher_patronymic_name = substr($patronymic_name,0,1).'.';
+        return $teacher_name.$teacher_patronymic_name.' '.$this->teacher_sur_name;
+    }
 }

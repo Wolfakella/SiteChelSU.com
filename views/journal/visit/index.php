@@ -34,13 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'students_id',
                 'filter' => Students::find()->select(["CONCAT(name, ' ',sur_name, ' ',patronymic_name)", 'id'])->indexBy('id')->column(),
-                    'value' => 'students.name',
+                    'value' => 'students.fio',
                 'label' => 'Студенты',
             ],
             [
                 'attribute' => 'teacher_id',
                 'filter' => Teacher::find()->select(["CONCAT(teacher_name, ' ',teacher_sur_name)", 'id'])->indexBy('id')->column(),
-                'value' => 'teacher.teacher_sur_name',
+                'value' => 'teacher.fio',
                 'label' => 'Преподаватель',
             ],
             [
