@@ -57,18 +57,9 @@ $date = $array['date'];
 					 	'template' => "{input}",
 					 	'options' => ['tag' => false]               
                 ])->hiddenInput();
-                echo $form->field($v, "[$index]subject_id", [
-					 	'template' => "{input}",
-					 	'options' => ['tag' => false]               
-                ])->label('')->hiddenInput();
-					 echo $form->field($v, "[$index]teacher_id", [
-					 	'template' => "{input}",
-					 	'options' => ['tag' => false]               
-                ])->label('')->hiddenInput();
-					 echo $form->field($v, "[$index]date", [
-					 	'template' => "{input}",
-					 	'options' => ['tag' => false]               
-                ])->label('')->hiddenInput();
+                echo $form->field($v, "[$index]subject_id")->label('')->hiddenInput();
+					 echo $form->field($v, "[$index]teacher_id")->label('')->hiddenInput();
+					 echo $form->field($v, "[$index]date")->label('')->hiddenInput();
             }
 //                foreach ($students as $v)
 //                {
