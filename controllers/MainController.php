@@ -80,17 +80,24 @@ class MainController extends Controller
             'name' => $model_name, 'model' => $model, 'v' => $group, 'visits' => $visits
         ]);
     }
-//    public function actionCreate()
-//    {
-//        $model = new FirstForm();
-//
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['create']);
-//        } else {
-//            return $this->render('create', [
-//                'model' => $model,
-//            ]);
-//        }
-//    }
+   public function actionCreate()
+   {
+        $model = $_POST['Visit'];
+        $visit = [];
+        foreach ($model as $value)
+        {
 
+            $visit = new Visit;
+            $visit->students_id = $value[students_id];
+            $visit->teacher_id = $value[teacher_id];
+            $visit->subject_id = $value[subject_id];
+            $visit->date = $value[date];
+            $visit->plus_id = $value[plus_id];
+            $visit->save();
+        }
+
+        return $this->render('create', [
+            'visit' => $visit,
+        ]);
+    }
 }
