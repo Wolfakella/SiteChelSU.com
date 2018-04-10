@@ -57,27 +57,34 @@ class MainController extends Controller
 
     public function actionGet()
     {
-        $model = new Plus;
-        $model_name= new Students;
-        $this->view->title = 'Запись';
-        $data = new FirstForm;
-        $data->load(Yii::$app->request->post());
-        
-        $group = Group::findOne($data->group);
+     
+        $items = $_POST['FirstForm'];
+        $teacher = $items['teacher'];
+        $group = $items['group'];
+        $subject = $items['subject'];
+        $date = $items['date'];
         $visits = [];
-        $students = $group->students;
-		  foreach($students as $v)
-		  {
-		  		$visit = new Visit();
-		  		$visit->students_id = $v->id;
-		  		$visit->teacher_id = $data->teacher;
-		  		$visit->subject_id = $data->subject;
-		  		$visit->date = $data->date;
-		  		$visits[] = $visit;
-		  }
+        $group_table = Group::findOne($group);
+        $teacher_table = Teacher::findOne($teacher);
+        $subject_table = Subject::findOne($subject);
+        $student_table = $group_table->students;
+
+
+
+        foreach ($student_table as $value)
+        {
+            $visit = new Visit();
+            $visit->students_id = $value->id;
+            $visit->teacher_id = $teacher;
+            $visit->subject_id = $subject;
+            $visit->date = $date;
+            $visits[] = $visit;
+        }
+
 
         return $this->render('get', [
-            'name' => $model_name, 'model' => $model, 'v' => $group, 'visits' => $visits
+            'items' => $items, 'group' => $group_table, 'subject' => $subject_table, 'teacher' => $teacher_table, 'date' => $date,
+            'student' => $student_table, 'visit' => $visit, 'visits' => $visits,
         ]);
     }
    public function actionCreate()
