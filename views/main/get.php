@@ -30,7 +30,7 @@ use yii\widgets\ActiveForm;
     <h3>Студенты: </h3>
 
 
-        <?php $form = ActiveForm::begin(['id' => 'SecondForm','action' =>'/basic/web/index.php?r=main%2Fcreate']);?>
+        <?php $form = ActiveForm::begin(['id' => 'SecondForm','action' => ['main/create']/*'/index.php?r=main%2Fcreate'*/]);?>
 
         <?php
 

@@ -14,6 +14,8 @@ use app\models\form\FirstForm;
 use app\models\Group;
 use app\models\Plus;
 use app\models\Visit;
+use app\models\Teacher;
+use app\models\Subject;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
@@ -69,7 +71,7 @@ class MainController extends Controller
         $subject_table = Subject::findOne($subject);
         $student_table = $group_table->students;
 
-
+		  $test = Students::find()->all();
 
         foreach ($student_table as $value)
         {
@@ -81,7 +83,9 @@ class MainController extends Controller
             $visits[] = $visit;
         }
 
-
+		  Yii::$app->session->open();
+		  Yii::$app->session->set('visit', $test);
+		   
         return $this->render('get', [
             'items' => $items, 'group' => $group_table, 'subject' => $subject_table, 'teacher' => $teacher_table, 'date' => $date,
             'student' => $student_table, 'visit' => $visit, 'visits' => $visits,
@@ -89,22 +93,34 @@ class MainController extends Controller
     }
    public function actionCreate()
    {
+   	$i = 0;
         $model = $_POST['Visit'];
         $visit = [];
+        
+        $test = Yii::$app->session->get('visit');
+        Yii::$app->session->destroy();
+        
+        $data = [];
+        $students = Students::find()->all();
+        $pluses = Plus::find()->all();        
         foreach ($model as $value)
         {
-
             $visit = new Visit;
-            $visit->students_id = $value[students_id];
-            $visit->teacher_id = $value[teacher_id];
-            $visit->subject_id = $value[subject_id];
-            $visit->date = $value[date];
-            $visit->plus_id = $value[plus_id];
+            $visit->students_id = $value['students_id'];
+            $data[$i]['fio'] = Students::findOne($visit->students_id)->fio;
+            $visit->teacher_id = $value['teacher_id'];
+            $visit->subject_id = $value['subject_id'];
+            $visit->date = $value['date'];
+            $visit->plus_id = $value['plus_id'];
+            $data[$i]['plus'] = Plus::findOne($visit->students_id)->operation;
             $visit->save();
+            $i++;
         }
-
+		  
         return $this->render('create', [
             'visit' => $visit,
+            'data' => $data,
+            'test' => $test
         ]);
     }
 }
