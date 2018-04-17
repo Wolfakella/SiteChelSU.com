@@ -5,15 +5,13 @@ use app\models\Subject;
 use app\models\Plus;
 use app\models\Group;
 use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
-use yii\widgets\DetailView;
-use yii\grid\GridView;
 use yii\widgets\ActiveForm;
 ?>
-<div class="get-index">
-
+    <?php
+    echo '<div class="container">';
+    ?>
     <p>
-    <h3><b>Группа: <?php echo $group->group; ?></b><?
+    <h3><b>Группа: </b><?php echo $group->group; ?></b><?
         ?></h3>
     </p>
     <p><b>Преподаватель: </b><?php
@@ -27,16 +25,24 @@ use yii\widgets\ActiveForm;
 
 
     <div class="visit-form">
-    <h3>Студенты: </h3>
-
 
         <?php $form = ActiveForm::begin(['id' => 'SecondForm','action' => ['main/create']/*'/index.php?r=main%2Fcreate'*/]);?>
 
         <?php
-
+        echo '<table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Студент</th>
+            <th>Посещаемость</th>
+        </tr>
+        </thead>
+        <tbody>
+        ';
         foreach ($visits as $index => $v)
         {
-            echo $form->field($v, "[$index]plus_id")->dropDownList(Plus::find()->select(['operation', 'id'])->indexBy('id')->column(), ['prompt' => ''])->label($v->students->name.' '.$v->students->sur_name);
+            echo '<tr>';
+            echo '<td>'.$v->students->name.' '.$v->students->sur_name.'</td>';
+            echo '<td>'.$form->field($v, "[$index]plus_id")->dropDownList(Plus::find()->select(['operation', 'id'])->indexBy('id')->column(), ['style' => 'width:150px !important']).'</td>';
             echo $form->field($v, "[$index]students_id", [
                 'template' => "{input}",
                 'options' => ['tag' => false]
@@ -53,10 +59,19 @@ use yii\widgets\ActiveForm;
                 'template' => "{input}",
                 'options' => ['tag' => false]
             ])->label('')->hiddenInput();
+            echo '</tr>';
+
+
         }
+
+            echo '</tbody>
+        </table>';
+    echo '</div>';
 
 
         ?>
+
+
 
 
         <div class="form-group">
@@ -64,4 +79,4 @@ use yii\widgets\ActiveForm;
     </div>
  <?php  ActiveForm::end(); ?>
     </div>
-</div>
+

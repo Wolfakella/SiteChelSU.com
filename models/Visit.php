@@ -20,6 +20,9 @@ use Yii;
  */
 class Visit extends \yii\db\ActiveRecord
 {
+
+
+
     /**
      * @inheritdoc
      */
@@ -34,11 +37,12 @@ class Visit extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['students_id', 'teacher_id', 'subject_id', 'plus_id'], 'integer'],
+            [['students_id', 'teacher_id', 'subject_id', 'plus_id'],  'required'],
             [['date'], 'safe'],
             [['students_id'], 'exist', 'skipOnError' => true, 'targetClass' => Students::className(), 'targetAttribute' => ['students_id' => 'id']],
             [['subject_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subject::className(), 'targetAttribute' => ['subject_id' => 'id']],
             [['teacher_id'], 'exist', 'skipOnError' => true, 'targetClass' => Teacher::className(), 'targetAttribute' => ['teacher_id' => 'id']],
+
         ];
     }
 
@@ -54,6 +58,7 @@ class Visit extends \yii\db\ActiveRecord
             'subject_id' => 'Subject ID',
             'plus_id' => 'Plus ID',
             'date' => 'Date',
+
         ];
     }
 

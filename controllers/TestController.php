@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Group;
+use app\models\Students;
 use yii\web\Controller;
 use yii\data\Pagination;
 use app\models\Test;
@@ -36,6 +38,24 @@ class TestController extends Controller
         $insert->save();
 
         return $this->render('insert', compact('insert'));
+    }
+
+    public function actionGroup()
+    {
+        $group = Group::find()->select(['group', 'id'])->indexBy('id')->column();
+        return $this->render('group', [
+            'group' => $group,
+        ]);
+    }
+
+    public function actionGg($id = null){
+        //$group = Group::findOne($id);
+        //$student = $group->students;
+        $student = Students::find()
+            ->where(['group_id' => $id,])->select(["CONCAT(name, ' ',sur_name, ' ',patronymic_name)", 'id'])->column();
+        // $student = Students::find($id)->select(["CONCAT(name, ' ',sur_name, ' ',patronymic_name)", 'id'])->indexBy($id)->column();
+        //$student = Students::find()->where(['group_id'=>$id])->all();
+        return $this -> render('gg', compact('student'));
     }
 
     public function actionIndex()

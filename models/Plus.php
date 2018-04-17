@@ -42,6 +42,10 @@ class Plus extends \yii\db\ActiveRecord
             'operation' => 'Operation',
         ];
     }
+    public function getPlus()
+    {
+        return $this->operation;
+    }
 
     /**
      * @return \yii\db\ActiveQuery

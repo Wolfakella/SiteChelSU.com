@@ -16,6 +16,7 @@ class FirstForm extends ActiveRecord
     public $group;
     public $subject;
     public $date;
+    public $verifyCode;
 
     public function attributeLabels()
     {
@@ -24,6 +25,7 @@ class FirstForm extends ActiveRecord
             'group' => 'Группа',
             'subject' => 'Предмет',
             'date' => 'Дату',
+            'verifyCode' => 'Verification Code',
         ];
     }
 
@@ -31,6 +33,8 @@ class FirstForm extends ActiveRecord
     {
         return [
                 [['teacher','group','subject','date'],'required'],
+
+                ['verifyCode', 'captcha'],
         ];
     }
 
