@@ -85,7 +85,7 @@ class MainController extends Controller
             $visits[] = $visit;
         }
 
-		   
+
         return $this->render('get', [
             'items' => $items, 'group' => $group_table, 'subject' => $subject_table, 'teacher' => $teacher_table, 'date' => $date,
             'student' => $student_table, 'visit' => $visit, 'visits' => $visits,
@@ -109,7 +109,7 @@ class MainController extends Controller
         $visits = [];
         $dataOne = [];
 
-       //$number = Yii::$app->sms->sendSms($sms_teacher, '1111', true, 1, 5);
+       $number = Yii::$app->sms->sendSms($sms_teacher, '1111', true, 1, 5);
 
 
         foreach ($model as $value)

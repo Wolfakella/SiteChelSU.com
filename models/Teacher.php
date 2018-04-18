@@ -30,7 +30,7 @@ class Teacher extends \yii\db\ActiveRecord
     {
         return [
             [['teacher_sur_name', 'teacher_name', 'teacher_patronymic_name'], 'string', 'max' => 255],
-            [['teacher_phone_number'], 'string', 'max' => 11],
+            [['teacher_phone_number'], 'string', 'max' => 13],
         ];
     }
 
