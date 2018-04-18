@@ -8,7 +8,7 @@ use yii\helpers\Url;
   </thead>';
 foreach ($student as $value){
  echo "<tr>";
-  echo "<td><a href=\"".Url::toRoute(['site/st', 'id' => $value->id])."\">".$value->fio."</a></td>";
+  echo "<td><a href=\"".Url::toRoute(['site/gg', 'id' => $value->id])."\">".$value->fio."</a></td>";
 }
 echo '</table></div>'
 ?>

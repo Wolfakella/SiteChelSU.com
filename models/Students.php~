@@ -68,8 +68,7 @@ class students extends \yii\db\ActiveRecord
     {
     	  $count = Visit::find()->where(['students_id' => $this->id])->count();
     	  $success = Visit::find()->where(['students_id' => $this->id, 'plus_id' => 1])->count();
-    	  if($count == 0) return 'Nor set';
-			else return round($success / $count, 2) * 100 . '%';
+    	  return round($success / $count, 2) * 100 . '%';
     }
     
 	public function getSubjects()

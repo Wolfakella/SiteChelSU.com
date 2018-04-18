@@ -135,8 +135,7 @@ class SiteController extends Controller
    }
    public function actionSt($id = null)
    {
-		$student = Students::findOne($id);  
-		return $this -> render('st', compact('student'));
+		$student = Students::findOne($id);   
    }
     public function actions()
     {
