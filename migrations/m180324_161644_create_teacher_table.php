@@ -17,7 +17,7 @@ class m180324_161644_create_teacher_table extends Migration
             'teacher_sur_name' => $this->string(),
             'teacher_name' => $this->string(),
             'teacher_patronymic_name' => $this->string(),
-            'teacher_phone_number' => $this->string(11),
+            'teacher_phone_number' => $this->string(20),
         ]);
         $this->alterColumn('teacher', 'id', $this->smallInteger(8).'NOT NULL AUTO_INCREMENT');
     }
