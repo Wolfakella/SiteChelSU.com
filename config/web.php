@@ -22,8 +22,8 @@ $config = [
                 // http://iqsms.ru/api/api_rest/
                 'iqsmsc_ru' => [
                     'class' => 'lowbase\sms\services\IqmscRuService',
-                    'login' => 'z1523816393803',
-                    'password' => '971652',
+                    'login' => '',
+                    'password' => '',
                     'order' => 2,
                 ],
                 // http://iqsms.ru/api/api_rest/
