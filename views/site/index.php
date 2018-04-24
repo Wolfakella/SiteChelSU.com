@@ -9,9 +9,7 @@ use yii\helpers\Url;
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
-
     <div class="body-content">
-
         <div class="row">
             <div class="col-lg-4 text-center" style="margin-top:10px;">
               <a href="<?= $urlOne?>" style="width:170px" class="btn btn-info" role="button">Группы</a>
@@ -23,6 +21,5 @@ $this->title = 'My Yii Application';
               <a href="<?= $urlThree?>" style="width:170px" class="btn btn-info" role="button">Преподаватели</a>
             </div>
         </div>
-
     </div>
 </div>

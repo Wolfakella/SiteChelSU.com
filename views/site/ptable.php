@@ -9,7 +9,7 @@ echo '<div class="col-lg-3"><table class="table table-bordered table-striped">
 foreach ($subject as $key => $value)
   {
     echo "<tr>";
-    $url = Url::toRoute(['site/pp', 'id' => $key]);
+    $url = Url::toRoute(['site/pp', 'ids' => $key]);
   echo "<td>".'<a href="'.$url.'">'.$value.'</a><br>'."</td></tr>";
   }
   echo '</table>

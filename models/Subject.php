@@ -42,6 +42,19 @@ class Subject extends \yii\db\ActiveRecord
             'subject' => 'Subject',
         ];
     }
+    public function getSub()
+    {
+        return $this->subject;
+    }
+
+
+    public function getTotalsubject()
+    {
+        $count = Visit::find()->where(['subject_id' => $this->id])->count();
+        $success = Visit::find()->where(['subject_id' => $this->id, 'plus_id' => 1])->count();
+        if($count == 0) return 'Нет информации по предмету.';
+      else return round($success / $count, 2) * 100 . '%';
+    }
 
     /**
      * @return \yii\db\ActiveQuery
